@@ -1,5 +1,5 @@
 let data;
-let searchcity;
+
 async function getWeatherData(city) {
 	try {
 		let response = await fetch(
@@ -9,7 +9,6 @@ async function getWeatherData(city) {
 		displaydata();
 	} catch (err) {
 		console.error("Error fetching weather:", err);
-		alert("Could not fetch weather data, please try again!");
 	}
 }
 
@@ -88,7 +87,7 @@ function displaydata() {
 	document.getElementById("forecastContainer").innerHTML = box;
 }
 function searchWeather() {
-	searchcity = document.getElementById("cityInput").value;
+	const searchcity = document.getElementById("cityInput").value;
 	getWeatherData(searchcity);
 }
 
