@@ -13,17 +13,23 @@ async function getWeatherData(city) {
 }
 
 navigator.geolocation.getCurrentPosition(
-	(position) => {
-		const lat = position.coords.latitude;
-		const lon = position.coords.longitude;
-		getWeatherData(`${lat},${lon}`);
-	},
-	(error) => {
-		console.error(error);
-		// fallback
-		getWeatherData("Cairo");
-	}
+  (position) => {
+    const lat = position.coords.latitude;
+    const lon = position.coords.longitude;
+    getWeatherData(`${lat},${lon}`);
+  },
+  (error) => {
+    console.error("Geolocation error:", error);
+    // fallback
+    getWeatherData("Cairo");
+  },
+  {
+    enableHighAccuracy: false,  
+    timeout: 5000,              
+    maximumAge: 60000           	
+  }
 );
+
 function displaydata() {
 	document
 		.getElementById("weatherIcon")
